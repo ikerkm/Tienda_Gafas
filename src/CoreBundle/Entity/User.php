@@ -63,7 +63,7 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->roles = ['ROLE_USER'];
+        $this->roles = ['ROLE_ADMIN'];
     }
 
     // other properties and methods

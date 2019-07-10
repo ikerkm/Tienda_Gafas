@@ -1,0 +1,50 @@
+{% extends 'baseadmin.html.twig' %}
+{% block body %}
+
+    <div class="d-flex justify-content-center form_container">
+
+
+        {{ form_start(form) }}
+
+        <div class="input-group mb-3">
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fas fa-user"></i>
+                </span>
+            </div>
+            {{ form_row(form.ProductName) }}
+        </div>
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fas fa-key"></i>
+                </span>
+            </div>
+            {{ form_row(form.Category) }}
+        </div>
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fas fa-key"></i>
+                </span>
+            </div>
+            {{ form_row(form.Sex) }}
+
+        </div>
+        <div class="input-group mb-2">
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fas fa-key"></i>
+                </span>
+            </div>
+            {{ form_row(form.Route) }}
+        </div>
+
+
+        <div class="d-flex justify-content-center mt-3 login_container">
+            <button type="submit">Register!</button>
+        </div>
+        {{ form_end(form) }}
+
+
+    {% endblock %}

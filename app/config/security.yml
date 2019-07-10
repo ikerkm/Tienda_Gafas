@@ -4,7 +4,7 @@ security:
 
     encoders:
         CoreBundle\Entity\User: bcrypt
-        
+  
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         our_db_provider:
@@ -34,9 +34,11 @@ security:
 
 
     access_control:
+         - { path: ^/admin_panel, roles: ROLE_ADMIN }  
          - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }            
+         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
+                  
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

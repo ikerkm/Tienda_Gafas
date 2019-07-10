@@ -33,3 +33,7 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    CoreBundle\Controller\:
+        resource: '../../src/CoreBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']

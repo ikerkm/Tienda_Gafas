@@ -5,6 +5,7 @@ namespace CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use CoreBundle\Entity\Glasses;
 
 class ShopCartController extends Controller
@@ -99,28 +100,51 @@ class ShopCartController extends Controller
 
 
     /**
-     * @Route("/updateCart/{id}", name="update_cart")
+     * @Route("/updateCart", name="update_cart")
      *
      */
     public function updateCart(Request $request)
     {
-        $id = $request->attributes->get('id');
-        dump($id);
+        $id_glass = $_GET['id'];
+        $quantity = $_GET['quantity'];
+        $cart = $this->get('session')->get('Cart');
 
-        return $this->redirectToRoute('shop_cart');
+        for ($i = 0; $i < sizeof($cart); $i++) {
+            if ($cart[$i][0] === $id_glass) {
+                if ($quantity > 0) {
+                    $cart[$i][1] = $quantity;
+                } else {
+
+                    array_splice($cart, $i, 1);
+                }
+            }
+        }
+        $this->get('session')->set('Cart', $cart);
+
+        return new Response($quantity);
     }
 
 
     /**
-     * @Route("/deleteCart/{id}", name="delete_cart")
+     * @Route("/deleteCart", name="delete_cart")
      *
      */
     public function deleteCart()
     {
 
+        $id_glass = $_GET['id'];
+        $quantity = $_GET['quantity'];
+        $cart = $this->get('session')->get('Cart');
+
+        for ($i = 0; $i < sizeof($cart); $i++) {
+            if ($cart[$i][0] === $id_glass) {
 
 
+                array_splice($cart, $i, 1);
+            }
+        }
+        $this->get('session')->set('Cart', $cart);
 
-        return $this->redirectToRoute('shop_cart');
+        return new Response($quantity);
     }
 }

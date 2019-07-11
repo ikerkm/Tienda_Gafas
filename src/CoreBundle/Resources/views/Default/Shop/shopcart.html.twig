@@ -3,6 +3,9 @@
     <link href="css/shopcart.css" rel="stylesheet" type="text/css"/>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 {% endblock %}
+{% block javascripts %}
+    <script src="js/cartManager.js" type="text/javascript"></script>
+{% endblock %}
 {% block body %}
 
     <div class="container">
@@ -31,18 +34,18 @@
                                 </div>
                             </td>
                             <td data-th="Price">${{glass[0].price}}</td>
-                            <td data-th="Quantity">
-                                <input class="form-control text-center" type="number" value="{{glass[0].cartQuantity}}">
+                            <td data-th="Quantity" id="quantity">
+                                <input class="form-control text-center quantity_product" type="number" value="{{glass[0].cartQuantity}}">
                             </td>
 
                             <td class="text-center" data-th="Subtotal">{{glass[0].subtotal}}</td>
                             <td class="actions" data-th="">
-                                <a href="{{ path('update_cart', {'id':glass[0].id}) }}">
-                                    <button class="btn btn-info btn-sm">
-                                        <i class="fa fa-refresh"></i>
-                                    </button>
-                                </a>
-                                <button class="btn btn-danger btn-sm">
+
+                                <button id_product="{{glass[0].id}}" class="btn btn-info btn-sm btn_refresh">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+
+                                <button id_product="{{glass[0].id}}" class="btn btn-danger btn-sm btn_delete">
                                     <i class="fa fa-trash-o"></i>
                                 </button>
                             </td>
@@ -64,7 +67,7 @@
             <td class="hidden-xs" colspan="2"></td>
             <td class="hidden-xs text-center">
                 <strong>Total
-                                                                                                                        ${{total}}</strong>
+                                                                                                                                                                                                                                                                                                                                                                                            ${{total}}</strong>
             </td>
             <td>
                 <a class="btn btn-success btn-block" href="#">Checkout

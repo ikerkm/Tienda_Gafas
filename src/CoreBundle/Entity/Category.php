@@ -24,7 +24,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="CategoryName", type="string", length=255)
+     * @ORM\Column(name="CategoryName", type="string", length=255,  unique=true)
      */
     public $categoryName;
 

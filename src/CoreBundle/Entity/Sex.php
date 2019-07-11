@@ -24,7 +24,7 @@ class Sex
     /**
      * @var string
      *
-     * @ORM\Column(name="Gender", type="string", length=255)
+     * @ORM\Column(name="Gender", type="string", length=255,  unique=true)
      */
     private $gender;
 
@@ -63,4 +63,3 @@ class Sex
         return $this->gender;
     }
 }
-

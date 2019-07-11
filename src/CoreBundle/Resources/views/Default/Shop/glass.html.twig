@@ -1,0 +1,140 @@
+{% extends 'basetemplate.html.twig' %}
+{% block body %}
+
+    <div class="container">
+
+        <hr>
+
+
+        <div class="card">
+            <div class="row">
+                <aside class="col-sm-5 border-right">
+                    <article class="gallery-wrap">
+                        <div class="img-big-wrap">
+                            <div>
+                                <a href="#"><img src="/{{glass_desc[0].imgRoute}}"></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- slider-nav.// -->
+                </article>
+                <!-- gallery-wrap .end// -->
+            </aside>
+            <aside class="col-sm-7">
+                <article class="card-body p-5">
+                    <h3 class="title mb-3">{{glass_desc[0].productName}}</h3>
+
+                    <p class="price-detail-wrap">
+                        <span class="price h3 text-warning">
+                            <span class="currency">US $</span>
+                            <span class="num">{{glass_desc[0].price}}</span>
+                        </span>
+
+                    </p>
+                    <!-- price-detail-wrap .// -->
+                    <dl class="item-property">
+                        <dt>Description</dt>
+                        <dd>
+                            <p>{{glass_desc[0].description}}
+                            </p>
+                        </dd>
+                    </dl>
+                    <dl class="param param-feature">
+                        <dt>Model#</dt>
+                        <dd>12345611</dd>
+                    </dl>
+                    <!-- item-property-hor .// -->
+
+                    <!-- item-property-hor .// -->
+
+                    <!-- item-property-hor .// -->
+
+                    <hr>
+                        <div class="row"> <div class="col-sm-5">
+                            <dl class="param param-inline">
+                                <dt>Quantity:
+                                </dt>
+                                <dd>
+                                    <select class="form-control form-control-sm" style="width:70px;">
+                                        <option>
+                                            1
+                                        </option>
+                                        <option>
+                                            2
+                                        </option>
+                                        <option>
+                                            3
+                                        </option>
+                                    </select>
+                                </dd>
+                            </dl>
+                            <!-- item-property .// -->
+                        </div>
+                        <!-- col.// -->
+                        <div class="col-sm-7">
+                            <dl class="param param-inline">
+                                <dt>Size:
+                                </dt>
+                                <dd>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" id="inlineRadio2" name="inlineRadioOptions" type="radio" value="option2">
+                                        <span class="form-check-label">SM</span>
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" id="inlineRadio2" name="inlineRadioOptions" type="radio" value="option2">
+                                        <span class="form-check-label">MD</span>
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" id="inlineRadio2" name="inlineRadioOptions" type="radio" value="option2">
+                                        <span class="form-check-label">XXL</span>
+                                    </label>
+                                </dd>
+                            </dl>
+                            <!-- item-property .// -->
+                        </div>
+                        <!-- col.// -->
+                    </div>
+                    <!-- row.// -->
+                    <hr>
+                    <a class="btn btn-lg btn-primary text-uppercase" href="#">
+                        Buy now
+                    </a>
+                    <a class="btn btn-lg btn-outline-primary text-uppercase" href="#">
+                        <i class="fas fa-shopping-cart"></i>
+                        Add to cart
+                    </a>
+                </article>
+                <!-- card-body.// -->
+            </aside>
+            <!-- col.// -->
+        </div>
+        <!-- row.// -->
+    </div>
+    <!-- card.// -->
+
+
+</div>
+<!--container.//-->
+
+
+<br><br><br>
+<article class="bg-secondary mb-3">
+    <div class="card-body text-center">
+        <h4 class="text-white">HTML UI KIT
+            <br>
+            Ready to use Bootstrap 4 components and templates
+        </h4>
+        <p class="h5 text-white">
+            for Ecommerce, marketplace, booking websites 
+                                                                                                                                                                                                                                and product landing pages</p>
+        <br>
+        <p>
+            <a class="btn btn-warning" href="http://bootstrap-ecommerce.com/" target="_blank">
+                Bootstrap-ecommerce.com
+                <i class="fa fa-window-restore "></i>
+            </a>
+        </p>
+    </div>
+    <br><br><br>
+</article>{% endblock %}

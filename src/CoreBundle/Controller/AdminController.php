@@ -71,7 +71,7 @@ class AdminController extends Controller
 
                 // updates the 'imageFilename' property to store the PDF file name
                 // instead of its contents
-                $glasses->setimgRoute($newFilename);
+                $glasses->setimgRoute("imageGlasses/" . $newFilename);
 
                 $em = $this->getDoctrine()->getManager();
 

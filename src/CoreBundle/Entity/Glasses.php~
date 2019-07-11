@@ -44,7 +44,13 @@ class Glasses
     /**
      * @var string
      *
-     * @ORM\Column(name="price", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price", type="integer", length=255)
      */
     private $price;
     /**
@@ -52,7 +58,7 @@ class Glasses
      *
      * @ORM\Column(name="rate", type="string", length=255)
      */
-    private $rate;
+    private $rate = 0;
 
     /**
      * @var string
@@ -166,5 +172,53 @@ class Glasses
     public function getImgRoute()
     {
         return $this->imgRoute;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return Glasses
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set rate
+     *
+     * @param string $rate
+     *
+     * @return Glasses
+     */
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Get rate
+     *
+     * @return string
+     */
+    public function getRate()
+    {
+        return $this->rate;
     }
 }

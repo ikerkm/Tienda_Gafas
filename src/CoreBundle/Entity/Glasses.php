@@ -44,7 +44,13 @@ class Glasses
     /**
      * @var string
      *
-     * @ORM\Column(name="price", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description = "default description";
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price", type="integer", length=255)
      */
     private $price;
     /**
@@ -214,5 +220,29 @@ class Glasses
     public function getRate()
     {
         return $this->rate;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Glasses
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

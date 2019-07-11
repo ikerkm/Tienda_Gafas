@@ -5,6 +5,7 @@ namespace CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use CoreBundle\Entity\Glasses;
 
 class ShopController extends Controller
 {
@@ -12,9 +13,10 @@ class ShopController extends Controller
     /**
      * @Route("/")
      */
-    public function indexAction()
+    public function showMain()
     {
-
+        $repository = $this->getDoctrine()->getRepository(Glasses::class);
+        $glasses = $repository->findAll();
 
         $user = $this->getUser();
         if ($user) {
@@ -23,6 +25,6 @@ class ShopController extends Controller
         } else {
             $user_name = "Guest";
         }
-        return $this->render('@Core/Default/Shop/home.html.twig', ['user_name' => $user_name]);
+        return $this->render('@Core/Default/Shop/home.html.twig', ['user_name' => $user_name, 'glasses' => $glasses]);
     }
 }

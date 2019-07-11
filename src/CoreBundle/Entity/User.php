@@ -61,6 +61,8 @@ class User implements UserInterface
      */
     private $roles;
 
+
+
     public function __construct()
     {
         $this->roles = ['ROLE_ADMIN'];
@@ -76,6 +78,8 @@ class User implements UserInterface
     {
         return $this->email;
     }
+
+
 
     public function setEmail($email)
     {

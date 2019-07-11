@@ -67,7 +67,24 @@ class Glasses
      */
     private $imgRoute;
 
-
+    public $cartQuantity;
+    public $subtotal;
+    public function setSubtotal($subtotal)
+    {
+        $this->subtotal = $subtotal;
+    }
+    public function getSubtotal()
+    {
+        return $this->subtotal;
+    }
+    public function setCartQuantity($cartQuantity)
+    {
+        $this->cartQuantity = $cartQuantity;
+    }
+    public function getCartQuantity()
+    {
+        return $this->cartQuantity;
+    }
     /**
      * Get id
      *

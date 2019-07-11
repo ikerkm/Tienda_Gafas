@@ -2,24 +2,32 @@
 
 namespace CoreBundle\Entity;
 
+
+
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * User
- *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\UserRepository")
+ * @ORM\Entity
+ * @UniqueEntity(fields="email", message="Email already taken")
  */
-class User
+class User implements UserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank
+     * @Assert\Email
+     */
+    private $email;
 
     /**
      * @var string
@@ -27,46 +35,54 @@ class User
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=255, unique=true)
-     */
-    private $mail;
-
     /**
      * @var string
      *
      * @ORM\Column(name="Surname", type="string", length=255)
      */
     private $surname;
+    /**
+     * @Assert\NotBlank
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
 
     /**
-     * @var string
+     * The below length depends on the "algorithm" you use for encoding
+     * the password, but this works well with bcrypt.
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(type="string")
+     * @Assert\Length(max=4096)
      */
     private $password;
 
-
     /**
-     * Get id
-     *
-     * @return int
+     * @ORM\Column(type="array")
      */
+    private $roles;
+
+    public $cart;
+
+    public function __construct()
+    {
+        $this->roles = ['ROLE_ADMIN'];
+    }
+
+    // other properties and methods
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return User
-     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
     public function setName($name)
     {
         $this->name = $name;
@@ -74,47 +90,16 @@ class User
         return $this;
     }
 
-    /**
-     * Get name
-     *
-     * @return string
-     */
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+
     public function getName()
     {
         return $this->name;
     }
-
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     *
-     * @return User
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    /**
-     * Set surname
-     *
-     * @param string $surname
-     *
-     * @return User
-     */
     public function setSurname($surname)
     {
         $this->surname = $surname;
@@ -132,45 +117,38 @@ class User
         return $this->surname;
     }
 
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return User
-     */
-    public function setPassword($password)
+    public function getPlainPassword()
     {
-        $this->password = $password;
-
-        return $this;
+        return $this->plainPassword;
     }
 
-    /**
-     * Get password
-     *
-     * @return string
-     */
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
     public function getPassword()
     {
         return $this->password;
     }
 
-    public function verifyMail($mail)
+    public function setPassword($password)
     {
-        $regexp_mail = "/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix";
-        if (preg_match($regexp_mail, $mail)) {
-            return true;
-        } else {
-            return false;
-        }
+        $this->password = $password;
     }
-    public function verifyPassword($pass, $pass2)
+
+    public function getSalt()
     {
-        if ($pass === $pass2) {
-            return true;
-        } else {
-            return false;
-        }
+        // The bcrypt and argon2i algorithms don't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
     }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function eraseCredentials()
+    { }
 }

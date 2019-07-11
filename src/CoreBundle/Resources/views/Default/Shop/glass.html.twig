@@ -3,141 +3,61 @@
     <link href="css/detailProduct.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% block body %}
-
     <div class="container">
-
-        <hr>
-
-
         <div class="card">
-            <div class="row">
-                <aside class="col-sm-5 border-right">
-                    <article class="gallery-wrap">
-                        <div class="img-big-wrap">
-                            <div>
-                                <a href="#"><img src="/{{glass_desc[0].imgRoute}}"></a>
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active" id="pic-1"><img heigth="500px" src="/{{glass_desc[0].imgRoute}}" width="500px"/></div>
+                        </div>
+
+
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title">{{glass_desc[0].productName}}</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
                             </div>
+                            <span class="review-no">41 reviews</span>
                         </div>
+                        <p class="product-description">{{glass_desc[0].description}}</p>
+                        <h4 class="price">current price:
+                            <span>${{glass_desc[0].price}}</span>
+                        </h4>
+                        <p class="vote">
+                            <strong>91%</strong>
+                            of buyers enjoyed this product!
+                            <strong>(87 votes)</strong>
+                        </p>
+                        <h5 class="sizes">sizes:
+                            <span class="size" data-toggle="tooltip" title="small">s</span>
+                            <span class="size" data-toggle="tooltip" title="medium">m</span>
+                            <span class="size" data-toggle="tooltip" title="large">l</span>
+                            <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+                        </h5>
+                        <h5 class="colors">colors:
+                            <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+                            <span class="color green"></span>
+                            <span class="color blue"></span>
+                        </h5>
+                        <div class="action">
 
+                            <a class="btn btn-lg btn-outline-primary text-uppercase" href="{{ path('add_to_cart', {'id':glass_desc[0].id}) }}">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to cart
+                            </a>
+
+                        </div>
                     </div>
-                    <!-- slider-nav.// -->
-                </article>
-                <!-- gallery-wrap .end// -->
-            </aside>
-            <aside class="col-sm-7">
-                <article class="card-body p-5">
-                    <h3 class="title mb-3">{{glass_desc[0].productName}}</h3>
-
-                    <p class="price-detail-wrap">
-                        <span class="price h3 text-warning">
-                            <span class="currency">US $</span>
-                            <span class="num">{{glass_desc[0].price}}</span>
-                        </span>
-
-                    </p>
-                    <!-- price-detail-wrap .// -->
-                    <dl class="item-property">
-                        <dt>Description</dt>
-                        <dd>
-                            <p>{{glass_desc[0].description}}
-                            </p>
-                        </dd>
-                    </dl>
-                    <dl class="param param-feature">
-                        <dt>Model#</dt>
-                        <dd>12345611</dd>
-                    </dl>
-                    <!-- item-property-hor .// -->
-
-                    <!-- item-property-hor .// -->
-
-                    <!-- item-property-hor .// -->
-
-                    <hr>
-                        <div class="row"> <div class="col-sm-5">
-                            <dl class="param param-inline">
-                                <dt>Quantity:
-                                </dt>
-                                <dd>
-                                    <select class="form-control form-control-sm" style="width:70px;">
-                                        <option>
-                                            1
-                                        </option>
-                                        <option>
-                                            2
-                                        </option>
-                                        <option>
-                                            3
-                                        </option>
-                                    </select>
-                                </dd>
-                            </dl>
-                            <!-- item-property .// -->
-                        </div>
-                        <!-- col.// -->
-                        <div class="col-sm-7">
-                            <dl class="param param-inline">
-                                <dt>Size:
-                                </dt>
-                                <dd>
-                                    <label class="form-check form-check-inline">
-                                        <input class="form-check-input" id="inlineRadio2" name="inlineRadioOptions" type="radio" value="option2">
-                                        <span class="form-check-label">SM</span>
-                                    </label>
-                                    <label class="form-check form-check-inline">
-                                        <input class="form-check-input" id="inlineRadio2" name="inlineRadioOptions" type="radio" value="option2">
-                                        <span class="form-check-label">MD</span>
-                                    </label>
-                                    <label class="form-check form-check-inline">
-                                        <input class="form-check-input" id="inlineRadio2" name="inlineRadioOptions" type="radio" value="option2">
-                                        <span class="form-check-label">XXL</span>
-                                    </label>
-                                </dd>
-                            </dl>
-                            <!-- item-property .// -->
-                        </div>
-                        <!-- col.// -->
-                    </div>
-                    <!-- row.// -->
-                    <hr>
-                    <a class="btn btn-lg btn-primary text-uppercase" href="#">
-                        Buy now
-                    </a>
-                    <a class="btn btn-lg btn-outline-primary text-uppercase" href="#">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to cart
-                    </a>
-                </article>
-                <!-- card-body.// -->
-            </aside>
-            <!-- col.// -->
+                </div>
+            </div>
         </div>
-        <!-- row.// -->
     </div>
-    <!-- card.// -->
-
-
-</div>
-<!--container.//-->
-
-
-<br><br><br>
-<article class="bg-secondary mb-3">
-    <div class="card-body text-center">
-        <h4 class="text-white">HTML UI KIT
-            <br>
-            Ready to use Bootstrap 4 components and templates
-        </h4>
-        <p class="h5 text-white">
-            for Ecommerce, marketplace, booking websites 
-                                                                                                                                                                                                                                            and product landing pages</p>
-        <br>
-        <p>
-            <a class="btn btn-warning" href="http://bootstrap-ecommerce.com/" target="_blank">
-                Bootstrap-ecommerce.com
-                <i class="fa fa-window-restore "></i>
-            </a>
-        </p>
-    </div>
-    <br><br><br>
-</article>{% endblock %}
+{% endblock %}

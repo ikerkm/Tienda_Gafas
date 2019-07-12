@@ -37,7 +37,8 @@ security:
          - { path: ^/admin_panel, roles: ROLE_ADMIN }  
          - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
+         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/profile, roles: ROLE_USER } 
                   
             # activate different ways to authenticate
 

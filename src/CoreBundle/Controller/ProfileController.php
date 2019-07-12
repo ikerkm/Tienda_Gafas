@@ -11,7 +11,7 @@ class ProfileController extends Controller
 
 
     /**
-     * @Route("/profile")
+     * @Route("/profile", name="profile")
      */
     public function adminPanel()
     {

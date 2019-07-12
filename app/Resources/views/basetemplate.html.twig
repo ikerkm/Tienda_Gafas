@@ -23,7 +23,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home
+                            <a class="nav-link" href="{{ path('home')}}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
@@ -49,8 +49,30 @@
                         <input aria-label="Search" class="form-control mr-sm-2" placeholder="Search" type="search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Searchh</button>
                     </form>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+                                {{user_name}}
+                            </a>
+                            <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                                {% if user_name == "Guest" %}
+                                    <a class="dropdown-item" href="{{ path('login')}}">Login</a>
+                                    <a class="dropdown-item" href="{{ path('register_page')}}">Register</a>
+                                {% endif %}
+                                {% if user_name != "Guest" %}
+                                    <a class="dropdown-item" href="{{ path('profile')}}">Profile</a>
 
-                    {{user_name}}
+
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ path('logout')}}">Logout</a>
+                                {% endif %}
+                            </div>
+                        </li>
+
+                        <a class="btn btn-info btn-lg" href="{{ path('shop_cart')}}">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            Shopping Cart</a>
+                    </li>
                 </div>
             </nav>
             <div class="container principal"> {% block body %}{% endblock %}
@@ -62,4 +84,4 @@
             </div>
         </body>
     </html>
-</body></html></body></html>
+</body></html></body></html></body></html>

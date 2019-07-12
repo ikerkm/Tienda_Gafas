@@ -1,2 +1,70 @@
 {% extends 'baseadmin.html.twig' %}
-{% block body %}{% endblock %}
+{% block stylesheets %}
+    <link href="css/shopcart.css" rel="stylesheet" type="text/css"/>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <table class="table table-hover table-condensed" id="cart">
+            <thead>
+                <tr>
+                    <th style="width:50%">Product</th>
+                    <th style="width:10%">Price</th>
+                    <th style="width:8%"></th>
+                    <th class="text-center" style="width:22%"></th>
+                    <th style="width:10%">
+                        <a class="btn btn-primary a-btn-slide-text" href="{{ path('newproduct_page')}}">
+                            <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
+                            <span>
+                                <strong>Add +</strong>
+                            </span>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for glass in glasses %}
+                    <tr>
+
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img alt="..." class="img-responsive" heigth="100px" width="100px" src="{{glass.imgRoute}}"/></div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">{{glass.productName}}</h4>
+                                    <p>{{glass.description}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">${{glass.price}}</td>
+
+                        <td data-th="Quantity" id="quantity"></td>
+
+                        <td class="text-center" data-th="Subtotal">
+                            <a class="btn btn-primary a-btn-slide-text" href="{{ path('editproduct_page', {'id': glass.id}) }}">
+                                <span aria-hidden="true" class="glyphicon glyphicon-edit"></span>
+                                <span>
+                                    <strong>Edit</strong>
+                                </span>
+                            </a>
+                        </td>
+
+                        <td class="actions" data-th="">
+
+
+                            <a class="btn btn-primary a-btn-slide-text" href="{{ path('deleteproduct_page', {'id': glass.id}) }}">
+                                <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+                                <span>
+                                    <strong>Delete</strong>
+                                </span>
+                            </a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </tr>
+    </tbody>
+
+</tr></tfoot></table></div>{% endblock %}

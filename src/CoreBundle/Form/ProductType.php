@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class ProductType extends AbstractType
 {
@@ -45,21 +45,28 @@ class ProductType extends AbstractType
         dump($array);
 
         $builder
-            ->add('productName', TextType::class)
-            ->add('price', NumberType::class)
+            ->add('productName', TextType::class, ['label' => 'Product name', 'attr' => array('class' => 'form-control')])
+
+
+
+
+
+
 
             ->add('category', ChoiceType::class, [
                 'choices'  =>
 
                 $array,
+                'label' => 'Category', 'attr' => array('class' => 'form-control')
             ])
             ->add('sex', ChoiceType::class, [
                 'choices'  => [
 
                     'Male' => '0',
                     'Female' => '1',
-                    'Both' => '2',
+
                 ],
+                'label' => ' Gender', 'attr' => array('class' => 'form-control')
             ])
 
             ->add('imgRoute', FileType::class, [
@@ -67,7 +74,7 @@ class ProductType extends AbstractType
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
-
+                'label' => 'Upload image', 'attr' => array('class' => 'form-control'),
                 // make it optional so you don't have to re-upload the PDF file
                 // everytime you edit the Product details
                 'required' => true,
@@ -85,7 +92,8 @@ class ProductType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid IMAGE archive',
                     ])
                 ],
-            ]);
+            ])
+            ->add('price', IntegerType::class, ['label' => 'Price', 'attr' => array('class' => 'form-control')]);
     }
 
 

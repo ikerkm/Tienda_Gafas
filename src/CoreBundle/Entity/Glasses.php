@@ -27,7 +27,12 @@ class Glasses
      * @ORM\Column(name="productName", type="string", length=255)
      */
     private $productName;
-
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price", type="integer", length=255)
+     */
+    private $price;
     /**
      * @var string
      *
@@ -47,12 +52,6 @@ class Glasses
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description = "default description";
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="price", type="integer", length=255)
-     */
-    private $price;
     /**
      * @var string
      *

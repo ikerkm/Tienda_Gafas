@@ -1,49 +1,26 @@
 {% extends 'baseadmin.html.twig' %}
 {% block body %}
-    <div class="d-flex justify-content-center form_container">
+    <div class="row">
+        <div class="col-sm-8">
 
-
-        {{ form_start(form) }}
-
-        <div class="input-group mb-3">
-            <div class="input-group-append">
-                <span class="input-group-text">
-                    <i class="fas fa-user"></i>
-                </span>
+            <h4 class="page-header">Add new product</h4>
+            {{ form_start(form) }}
+            <div class="form-group float-label-control">
+                {{ form_row(form.productName) }}
             </div>
-            {{ form_row(form.productName) }}
-        </div>
-        <div class="input-group mb-2">
-            <div class="input-group-append">
-                <span class="input-group-text">
-                    <i class="fas fa-key"></i>
-                </span>
+            <div class="form-group float-label-control">
+                {{ form_row(form.category) }}
             </div>
-            {{ form_row(form.category) }}
-        </div>
-        <div class="input-group mb-2">
-            <div class="input-group-append">
-                <span class="input-group-text">
-                    <i class="fas fa-key"></i>
-                </span>
+            <div class="form-group float-label-control">
+                {{ form_row(form.sex) }}
             </div>
-            {{ form_row(form.sex) }}
-
-        </div>
-        <div class="input-group mb-2">
-            <div class="input-group-append">
-                <span class="input-group-text">
-                    <i class="fas fa-key"></i>
-                </span>
+            <div class="form-group float-label-control">
+                {{ form_row(form.imgRoute) }}
             </div>
-            {{ form_row(form.imgRoute) }}
+            <div class="form-group float-label-control">
+                {{ form_row(form.price) }}
+            </div>
+            <button class="btn btn-info" type="submit">CREATE</button>
+            {{ form_end(form) }}
         </div>
-
-
-        <div class="d-flex justify-content-center mt-3 login_container">
-            <button type="submit">Register!</button>
-        </div>
-        {{ form_end(form) }}
-
-
     {% endblock %}

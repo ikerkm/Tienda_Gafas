@@ -15,7 +15,7 @@ class AdminController extends Controller
 {
 
     /**
-     * @Route("/admin_panel")
+     * @Route("/admin_panel", name="admin_panel")
      */
     public function adminPanel()
     {
@@ -23,9 +23,9 @@ class AdminController extends Controller
 
         $user = $this->getUser();
 
-        $surname = $this->get('session')->get('surname');
-        $user_name = $user->getName() . " " . $user->getSurname();
-        return $this->render('@Core/Default/Admin/admin_panel.html.twig');
+        $repository_glasses = $this->getDoctrine()->getRepository(Glasses::class);
+        $glasses = $repository_glasses->findAll();
+        return $this->render('@Core/Default/Admin/admin_panel.html.twig', ['glasses' => $glasses]);
     }
     /**
      * @Route("/admin_panel/newproduct",  name="newproduct_page")
@@ -98,5 +98,95 @@ class AdminController extends Controller
 
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * @Route("/admin_panel/editproduct/{id}",  name="editproduct_page")
+     */
+    public function editProduct(Request $request, Glasses $glasses)
+    {
+        $id = $request->attributes->get('id');
+
+        $repository_glasses = $this->getDoctrine()->getRepository(Glasses::class);
+        $glass = $repository_glasses->findById($id);
+        $category_selector = $this->getDoctrine()->getRepository(Category::class);
+        $category = $category_selector->findAll();
+
+        /* array(
+
+            'category' => $category,
+        )*/
+
+        /* $form = $this->createForm(ProductType::class, array(
+            'glasses' => $glasses,
+            'category' => $category,
+        ));*/
+        $form = $this->createForm(ProductType::class, $glasses, array(
+
+            'category' => $category,
+        ));
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+            // $em->persist($category);
+            //  $em->flush();
+            $imageFile = $form['imgRoute']->getData();
+            //  dump($form['productName']->getData());
+            //$glasses->setProductName($form['productName']->getData());
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imageFile) {
+
+                // this is needed to safely include the file name as part of the URL
+
+                $newFilename =  uniqid() . '.' . $imageFile->guessExtension();
+
+
+                // updates the 'imageFilename' property to store the PDF file name
+                // instead of its contents
+                $glasses->setimgRoute("imageGlasses/" . $newFilename);
+
+                $this->getDoctrine()->getManager()->flush();
+
+                // $em->persist($glasses);
+
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $imageFile->move(
+                        $this->getParameter('imageGlasses_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+            }
+
+
+            return $this->redirectToRoute('admin_panel');
+        }
+
+
+        return $this->render('@Core/Default/Admin/editproduct.html.twig', array(
+            'glass' => $glass,
+            'form' => $form->createView(),
+        ));
+    }
+    /**
+     * @Route("/admin_panel/deleteproduct/{id}",  name="deleteproduct_page")
+     */
+    public function deleteProduct(Request $request)
+    {
+        $id = $request->attributes->get('id');
+
+        $repository_glasses = $this->getDoctrine()->getRepository(Glasses::class);
+        $glass = $repository_glasses->findById($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($glass[0]);
+        $em->flush();
+        return $this->redirectToRoute('admin_panel');
     }
 }

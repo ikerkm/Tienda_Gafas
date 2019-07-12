@@ -1,0 +1,71 @@
+{% extends 'baseadmin.html.twig' %}
+{% block stylesheets %}
+    <link href="css/editproduct.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block body %}
+
+
+    <div class="product_table">
+        <table class="table table-hover table-condensed" id="cart">
+            <thead>
+                <tr>
+                    <th style="width:50%">Product</th>
+                    <th style="width:10%">Price</th>
+                    <th style="width:8%">Category</th>
+                    <th class="text-center" style="width:22%">Gender</th>
+                    <th style="width:10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <tr>
+
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-2 hidden-xs"><img alt="..." class="img-responsive" heigth="100px" src="/{{glass[0].imgRoute}}" width="100px"/></div>
+                            <div class="col-sm-10">
+                                <h4 class="nomargin">{{glass[0].productName}}</h4>
+                                <p>{{glass[0].description}}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-th="Price">${{glass[0].price}}</td>
+
+                    <td data-th="Category" id="category">
+                        {{glass[0].category}}</td>
+
+                    <td class="text-center" data-th="Subtotal">{{glass[0].sex}}</td>
+
+                    <td class="actions" data-th=""></td>
+
+                </tr>
+
+
+            </tbody>
+        </tr>
+    </tbody>
+
+</table></div><div class="row">
+<div class="col-sm-8">
+
+    <h4 class="page-header">Edit product</h4>
+    {{ form_start(form) }}
+    <div class="form-group float-label-control">
+        {{ form_row(form.productName) }}
+    </div>
+    <div class="form-group float-label-control">
+        {{ form_row(form.category) }}
+    </div>
+    <div class="form-group float-label-control">
+        {{ form_row(form.sex) }}
+    </div>
+    <div class="form-group float-label-control">
+        {{ form_row(form.imgRoute) }}
+    </div>
+    <div class="form-group float-label-control">
+        {{ form_row(form.price) }}
+    </div>
+    <button class="btn btn-info" type="submit">EDIT</button>
+    {{ form_end(form) }}
+</td></tr></tbody></div></div>{% endblock %}

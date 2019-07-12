@@ -1,11 +1,16 @@
 {% extends 'basetemplate.html.twig' %}
+{% block stylesheets %}
+    <link href="css/footer.css" rel="stylesheet" type="text/css"/>
+    <link href="css/shop.css" rel="stylesheet" type="text/css"/>
+
+{% endblock %}
 {% block body %}
 
-    <div class="container">
+    <div class="container ">
 
         <div class="row">
 
-            <div class="col-lg-3">
+            <div class="col-lg-3 category_menu">
 
                 <h1 class="my-4">Shop Name</h1>
                 <div class="list-group">
@@ -26,6 +31,7 @@
             <div class="col-lg-9">
 
                 <div class="carousel slide my-4" data-ride="carousel" id="carouselExampleIndicators">
+
                     <ol class="carousel-indicators">
                         <li class="active" data-slide-to="0" data-target="#carouselExampleIndicators"></li>
                         <li data-slide-to="1" data-target="#carouselExampleIndicators"></li>
@@ -76,6 +82,8 @@
 
                 </div>
                 <!-- /.container -->
+            </div>
+        </div>
+    </div>
 
-
-            {% endblock %}
+{% endblock %}

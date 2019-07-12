@@ -37,3 +37,4 @@ services:
         resource: '../../src/CoreBundle/Controller'
         public: true
         tags: ['controller.service_arguments']
+

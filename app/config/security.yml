@@ -12,6 +12,13 @@ security:
                 class: CoreBundle:User
                 property: email
 
+    access_control:
+         - { path: ^/profile, roles: ROLE_USER } 
+         - { path: ^/admin_panel, roles: ROLE_ADMIN }  
+         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -27,18 +34,14 @@ security:
       
             logout:
                 path:   /logout
-                target: /
+                target: /login
    
 
 
 
 
-    access_control:
-         - { path: ^/admin_panel, roles: ROLE_ADMIN }  
-         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/profile, roles: ROLE_USER } 
+   
+        
                   
             # activate different ways to authenticate
 

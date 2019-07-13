@@ -18,6 +18,7 @@ class ShopCartController extends Controller
         $cart =  $this->get('session')->get('Cart');
 
         $user = $this->getUser();
+        $role = $user->getRoles();
         $array_glasses = [];
         $repository_glasses = $this->getDoctrine()->getRepository(Glasses::class);
         $total = 0;
@@ -40,7 +41,7 @@ class ShopCartController extends Controller
             $user_name = "Guest";
         }
 
-        return $this->render('@Core/Default/Shop/shopcart.html.twig', ['user_name' => $user_name, 'glasses' => $array_glasses, 'total' => $total]);
+        return $this->render('@Core/Default/Shop/shopcart.html.twig', ['role' => $role, 'user_name' => $user_name, 'glasses' => $array_glasses, 'total' => $total]);
     }
 
     /**

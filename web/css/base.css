@@ -1,0 +1,21 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar_content {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sub_nav2 {
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+
+}
+
+.sub_nav1 {}

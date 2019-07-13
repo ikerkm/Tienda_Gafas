@@ -1,123 +1,85 @@
 {% extends 'basetemplate.html.twig' %}
 {% block body %}
 
-    <div class="container bootstrap snippet">
-        <div class="row">
-            <div class="col-sm-10">
-                <h1>User name</h1>
-            </div>
-            <div class="col-sm-2">
-                <a class="pull-right" href="/users"><img class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100" title="profile image"></a>
-            </div>
-        </div>
-        <div class="row">
-            <div
-                class="col-sm-3">
-                <!--left col-->
+    <div
+        class="container bootstrap snippet">
 
-
-                <div class="text-center">
-                    <img alt="avatar" class="avatar img-circle img-thumbnail" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                    <h6>Upload a different photo...</h6>
-                    <input class="text-center center-block file-upload" type="file">
-                </div>
-            </hr><br>
-
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Website
-                    <i class="fa fa-link fa-1x"></i>
-                </div>
-                <div class="panel-body">
-                    <a href="http://bootnipets.com">bootnipets.com</a>
-                </div>
-            </div>
-
-
-            <ul class="list-group">
-                <li class="list-group-item text-muted">Activity
-                    <i class="fa fa-dashboard fa-1x"></i>
-                </li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left">
-                        <strong>Shares</strong>
-                    </span>
-                    125</li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left">
-                        <strong>Likes</strong>
-                    </span>
-                    13</li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left">
-                        <strong>Posts</strong>
-                    </span>
-                    37</li>
-                <li class="list-group-item text-right">
-                    <span class="pull-left">
-                        <strong>Followers</strong>
-                    </span>
-                    78</li>
-            </ul>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Social Media</div>
-                <div class="panel-body">
-                    <i class="fa fa-facebook fa-2x"></i>
-                    <i class="fa fa-github fa-2x"></i>
-                    <i class="fa fa-twitter fa-2x"></i>
-                    <i class="fa fa-pinterest fa-2x"></i>
-                    <i class="fa fa-google-plus fa-2x"></i>
-                </div>
-            </div>
-
-        </div>
         <!--/col-3-->
         <div class="col-sm-9">
 
 
             <div class="tab-content">
+
                 <div class="tab-pane active" id="home">
-                    <hr>
-
-                    <div class="form-group">
-
-                        <div class="col-xs-6">
-                            <label for="first_name">
-                                <h4>First name</h4>
-                            </label>
-                            <p>{{user_info[0].name}}</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-
-                        <div class="col-xs-6">
-                            <label for="last_name">
-                                <h4>Last name</h4>
-                            </label>
-                            <p>{{user_info[0].surname}}</p>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <div class="col-xs-6">
-                            <label for="email">
-                                <h4>Email</h4>
-                            </label>
-                            <p>{{user_info[0].email}}</p>
-                        </div>
-                    </div>
 
                     <hr>
+                    {% if error_pass != null %}
+                        <div class="alert alert-danger" role="alert">
+                            {{error_pass}}
+                        </div>
+
+                    {% endif %}
+                    {{ form_start(form) }}
+                    <div class="form-group">
+
+                        <div class="col-xs-6">
+                            {{ form_row(form.email) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-xs-6">
+                            {{ form_row(form.name) }}
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                {{ form_row(form.surname) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email">
+                                    <h4>Verify</h4>
+                                </label>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                {{ form_row(form.plainPassword.first) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                {{ form_row(form.plainPassword.second) }}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit">
+                                    <i class="glyphicon glyphicon-ok-sign"></i>
+                                    Save</button>
+
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+
+
+                    </div>
+                    <!--/tab-pane-->
+
 
                 </div>
-                <!--/tab-pane-->
-
-
+                <!--/col-9-->
             </div>
-            <!--/col-9-->
         </div>
-        <!--/row-->
-    {% endblock %}
+    </div>
+    <!--/row-->
+{% endblock %}

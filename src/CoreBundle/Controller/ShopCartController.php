@@ -61,9 +61,7 @@ class ShopCartController extends Controller
         } else {
             $cart = $this->get('session')->get('Cart');
 
-            /* if (sizeof($cart) === 1) {
-                dump($cart[8]);
-            }*/
+
             $cont_same_product = 0;
             for ($i = 0; $i < sizeof($cart); $i++) {
                 if ($cart[$i][0] === $id) {
@@ -77,10 +75,8 @@ class ShopCartController extends Controller
 
                 array_push($cart, [$id, 1]);
             }
-            // $this->get('session')->remove('Cart');
+
             $this->get('session')->set('Cart', $cart);
-            //  $tiny_array = array($id => "1");
-            // $array = array_merge($cart, $tiny_array);
         }
 
 
@@ -95,7 +91,7 @@ class ShopCartController extends Controller
         } else {
             $user_name = "Guest";
         }
-        // return $this->render('@Core/Default/Shop/shopcart.html.twig', ['user_name' => $user_name]);
+
         return $this->redirectToRoute('shop_cart');
     }
 

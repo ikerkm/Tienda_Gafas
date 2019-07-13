@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProductType extends AbstractType
 {
@@ -26,23 +27,18 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        //  $category_selector = $this->getDoctrine()->getRepository(Category::class);
+
 
         $category = $options['category'];
         dump($category);
-        // dump($category['data']['category'][0]->id);
+
         $array = array();
-        /*
-        for ($i = 0; $i < sizeof($category['data']['category']); $i++) {
-            $tiny_array = array($category['data']['category'][$i]->categoryName => $category['data']['category'][$i]->id,);
-            $array = array_merge($array, $tiny_array);
-        };*/
 
         for ($i = 0; $i < sizeof($category); $i++) {
             $tiny_array = array($category[$i]->categoryName => $category[$i]->id,);
             $array = array_merge($array, $tiny_array);
         }
-        dump($array);
+
 
         $builder
             ->add('productName', TextType::class, ['label' => 'Product name', 'attr' => array('class' => 'form-control')])
@@ -68,7 +64,10 @@ class ProductType extends AbstractType
                 ],
                 'label' => ' Gender', 'attr' => array('class' => 'form-control')
             ])
+            ->add('description', TextareaType::class, [
 
+                'label' => ' Description', 'attr' => array('class' => 'form-control')
+            ])
             ->add('imgRoute', FileType::class, [
                 'label' => 'Glasses image',
 

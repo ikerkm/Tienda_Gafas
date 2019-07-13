@@ -36,15 +36,9 @@ class AdminController extends Controller
         $category_selector = $this->getDoctrine()->getRepository(Category::class);
         $category = $category_selector->findAll();
 
-        /* array(
 
-            'category' => $category,
-        )*/
         $glasses = new Glasses();
-        /* $form = $this->createForm(ProductType::class, array(
-            'glasses' => $glasses,
-            'category' => $category,
-        ));*/
+
         $form = $this->createForm(ProductType::class, $glasses, array(
 
             'category' => $category,
@@ -55,22 +49,14 @@ class AdminController extends Controller
 
 
 
-            // $em->persist($category);
-            //  $em->flush();
+
             $imageFile = $form['imgRoute']->getData();
             dump($form['productName']->getData());
-            //$glasses->setProductName($form['productName']->getData());
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
-            if ($imageFile) {
 
-                // this is needed to safely include the file name as part of the URL
+            if ($imageFile) {
 
                 $newFilename =  uniqid() . '.' . $imageFile->guessExtension();
 
-
-                // updates the 'imageFilename' property to store the PDF file name
-                // instead of its contents
                 $glasses->setimgRoute("imageGlasses/" . $newFilename);
 
                 $em = $this->getDoctrine()->getManager();
@@ -78,19 +64,16 @@ class AdminController extends Controller
                 $em->persist($glasses);
                 $em->flush();
 
-                // Move the file to the directory where brochures are stored
                 try {
                     $imageFile->move(
                         $this->getParameter('imageGlasses_directory'),
                         $newFilename
                     );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
+                } catch (FileException $e) { }
             }
 
 
-            //return $this->redirectToRoute('register_page', array('id' => $user->getId()));
+            return $this->redirectToRoute('admin_panel');
         }
 
 
@@ -112,15 +95,6 @@ class AdminController extends Controller
         $category_selector = $this->getDoctrine()->getRepository(Category::class);
         $category = $category_selector->findAll();
 
-        /* array(
-
-            'category' => $category,
-        )*/
-
-        /* $form = $this->createForm(ProductType::class, array(
-            'glasses' => $glasses,
-            'category' => $category,
-        ));*/
         $form = $this->createForm(ProductType::class, $glasses, array(
 
             'category' => $category,
@@ -131,38 +105,27 @@ class AdminController extends Controller
 
 
 
-            // $em->persist($category);
-            //  $em->flush();
+
             $imageFile = $form['imgRoute']->getData();
-            //  dump($form['productName']->getData());
-            //$glasses->setProductName($form['productName']->getData());
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
+
             if ($imageFile) {
 
-                // this is needed to safely include the file name as part of the URL
+
 
                 $newFilename =  uniqid() . '.' . $imageFile->guessExtension();
 
 
-                // updates the 'imageFilename' property to store the PDF file name
-                // instead of its contents
                 $glasses->setimgRoute("imageGlasses/" . $newFilename);
 
                 $this->getDoctrine()->getManager()->flush();
 
-                // $em->persist($glasses);
 
-
-                // Move the file to the directory where brochures are stored
                 try {
                     $imageFile->move(
                         $this->getParameter('imageGlasses_directory'),
                         $newFilename
                     );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
+                } catch (FileException $e) { }
             }
 
 

@@ -44,6 +44,13 @@ class ShopController extends Controller
         $id = $request->attributes->get('id');
         $repository = $this->getDoctrine()->getRepository(Glasses::class);
         $glasses = $repository->findById($id);
+
+
+        $repository_gender = $this->getDoctrine()->getRepository(Sex::class);
+        $gender = $repository_gender->findById($glasses[0]->sex);
+
+        $repository_category =  $this->getDoctrine()->getRepository(Category::class);
+        $categories = $repository_category->findById($glasses[0]->category);
         $user = $this->getUser();
         $role = $user->getRoles();
         if ($user) {
@@ -51,7 +58,7 @@ class ShopController extends Controller
         } else {
             $user_name = "Guest";
         }
-        return $this->render('@Core/Default/Shop/glass.html.twig', ['role' => $role, 'glass_desc' => $glasses, 'user_name' => $user_name]);
+        return $this->render('@Core/Default/Shop/glass.html.twig', ['role' => $role, 'glass_desc' => $glasses, 'user_name' => $user_name, 'gender' => $gender[0], 'category' => $categories[0]]);
     }
 
     /**

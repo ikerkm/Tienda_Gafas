@@ -38,14 +38,14 @@ class Glasses
      *
      * @ORM\Column(name="category", type="string", length=255)
      */
-    private $category;
+    public $category;
 
     /**
      * @var string
      *
      * @ORM\Column(name="sex", type="string", length=255)
      */
-    private $sex;
+    public $sex;
     /**
      * @var string
      *

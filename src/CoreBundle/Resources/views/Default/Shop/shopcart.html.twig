@@ -1,6 +1,6 @@
 {% extends 'basetemplate.html.twig' %}
 {% block stylesheets %}
-    <link href="css/shopcart.css" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('css/shopcart.css')}}" rel="stylesheet" type="text/css"/>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 {% endblock %}
 {% block javascripts %}
@@ -68,7 +68,7 @@
             <td class="hidden-xs" colspan="2"></td>
             <td class="hidden-xs text-center">
                 <strong>Total
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        ${{total}}</strong>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ${{total}}</strong>
             </td>
             <td>
                 <a class="btn btn-success btn-block" href="#">Checkout
@@ -77,4 +77,18 @@
             </td>
         </tr>
     </tfoot>
-</tr></tfoot></table></div>{% endblock %}
+</tr></tfoot></table><h2>May interest you</h2><div class="may_interest">{% for glass in rand_glasses %}
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+        <a href="{{ path('product_detail', {'id': glass.id}) }}"><img alt="" class="card-img-top" src="{{glass.imgRoute}}"></a>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="{{ path('product_detail', {'id': glass.id}) }}">{{glass.productName}}</a>
+            </h4>
+            <h5>${{glass.price}}</h5>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        </div>
+    </div>
+</div>{% endfor %}</div></div>{% endblock %}

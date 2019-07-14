@@ -6,3 +6,18 @@
 body {
     background-color: #C1C1C1;
 }
+
+.list_item_category {
+
+
+    border: none;
+    text-decoration: none;
+}
+
+.list_item_category:hover {
+
+
+    border: none;
+    text-decoration: none;
+    background-color: #EEEBEB;
+}

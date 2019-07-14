@@ -120,3 +120,9 @@
     }
 
 }
+
+.may_interest {
+
+    display: flex;
+    flex-direction: row;
+}

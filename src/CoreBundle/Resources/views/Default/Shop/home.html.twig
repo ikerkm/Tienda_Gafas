@@ -1,7 +1,7 @@
 {% extends 'basetemplate.html.twig' %}
 {% block stylesheets %}
 
-    <link href="css/shop.css" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('css/shop.css')}}" rel="stylesheet" type="text/css"/>
 
 {% endblock %}
 {% block body %}
@@ -12,14 +12,14 @@
 
             <div class="col-lg-3 category_menu">
 
-                <h1 class="my-4">Shop Name</h1>
-                <div class="list-group">
+                <h1 class="my-4">All sections</h1>
+                <div class="list-group category_menu">
                     {% for gen in gender %}
-                        <a class="list-group-item" href="{{ path('product_gender', {'id': gen.id}) }}">{{gen.gender}}
+                        <a class="list-group-item list_item_category" href="{{ path('product_gender', {'id': gen.id}) }}">{{gen.gender}}
                             Geek glasses</a>
                     {% endfor %}
                     {% for category in categories %}
-                        <a class="list-group-item" href="{{ path('product_category', {'id': category.id}) }}">{{category.CategoryName}}
+                        <a class="list-group-item list_item_category" href="{{ path('product_category', {'id': category.id}) }}">{{category.CategoryName}}
                             Geek glasses</a>
 
                     {% endfor %}
@@ -31,7 +31,7 @@
             <div class="col-lg-9">
 
                 <div class="carousel slide my-4" data-ride="carousel" id="carouselExampleIndicators">
-                    <img alt="First slide" class="d-block img-fluid" height="350" src="/img/imgcorporativa.png" weight="900">
+                    <img alt="First slide" class="d-block img-fluid" height="350" src="{{asset('img/imgcorporativa.png')}}" weight="900">
 
                 </div>
 

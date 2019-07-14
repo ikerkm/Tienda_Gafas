@@ -1,6 +1,6 @@
 {% extends 'baseadmin.html.twig' %}
 {% block stylesheets %}
-    <link href="css/editproduct.css" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('css/editproduct.css')}}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% block body %}
 
@@ -62,6 +62,9 @@
     </div>
     <div class="form-group float-label-control">
         {{ form_row(form.imgRoute) }}
+    </div>
+    <div class="form-group float-label-control">
+        {{ form_row(form.description) }}
     </div>
     <div class="form-group float-label-control">
         {{ form_row(form.price) }}

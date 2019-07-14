@@ -11,6 +11,13 @@ section .section-title {
     text-transform: uppercase;
 }
 
+#text_footer {
+
+
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
 #footer {
     background: black;
 }

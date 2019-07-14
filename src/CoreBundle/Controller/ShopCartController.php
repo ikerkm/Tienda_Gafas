@@ -21,6 +21,20 @@ class ShopCartController extends Controller
         $role = $user->getRoles();
         $array_glasses = [];
         $repository_glasses = $this->getDoctrine()->getRepository(Glasses::class);
+        $all_glasses = $repository_glasses->findAll();
+        $rand_glasses = array();
+        $cont = 0;
+        for ($z = 0; $z < sizeof($all_glasses); $z++) {
+            $rand_selector = rand($z, sizeof($all_glasses) - 1);
+            if ($cont < 3) {
+                array_push($rand_glasses, $all_glasses[$rand_selector]);
+                $cont++;
+            }
+            if ($cont === 3) {
+                break;
+            }
+        }
+        dump($rand_glasses);
         $total = 0;
         if ($cart) {
             for ($i = 0; $i < sizeof($cart); $i++) {
@@ -41,7 +55,7 @@ class ShopCartController extends Controller
             $user_name = "Guest";
         }
 
-        return $this->render('@Core/Default/Shop/shopcart.html.twig', ['role' => $role, 'user_name' => $user_name, 'glasses' => $array_glasses, 'total' => $total]);
+        return $this->render('@Core/Default/Shop/shopcart.html.twig', ['role' => $role, 'user_name' => $user_name, 'glasses' => $array_glasses, 'total' => $total, 'rand_glasses' => $rand_glasses]);
     }
 
     /**

@@ -26,7 +26,7 @@ class ShopController extends Controller
         $glasses = $repository_glasses->findAll();
         $user = $this->getUser();
         $role = $user->getRoles();
-        dump($role[0]);
+
         if ($user) {
             $user_name = $user->getName() . " " . $user->getSurname();
         } else {
@@ -67,7 +67,7 @@ class ShopController extends Controller
     public function showCateogry(Request $request)
     {
         $category_id = $request->attributes->get('id');
-        dump($category_id);
+
         $repository_gender = $this->getDoctrine()->getRepository(Sex::class);
         $gender = $repository_gender->findAll();
         $repository_category =  $this->getDoctrine()->getRepository(Category::class);

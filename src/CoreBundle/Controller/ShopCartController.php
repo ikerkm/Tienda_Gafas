@@ -34,7 +34,7 @@ class ShopCartController extends Controller
                 break;
             }
         }
-        dump($rand_glasses);
+
         $total = 0;
         if ($cart) {
             for ($i = 0; $i < sizeof($cart); $i++) {

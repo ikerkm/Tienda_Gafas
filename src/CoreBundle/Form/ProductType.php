@@ -26,29 +26,15 @@ class ProductType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
-
-
         $category = $options['category'];
-        dump($category);
-
         $array = array();
 
         for ($i = 0; $i < sizeof($category); $i++) {
             $tiny_array = array($category[$i]->categoryName => $category[$i]->id,);
             $array = array_merge($array, $tiny_array);
         }
-
-
         $builder
             ->add('productName', TextType::class, ['label' => 'Product name', 'attr' => array('class' => 'form-control')])
-
-
-
-
-
-
-
             ->add('category', ChoiceType::class, [
                 'choices'  =>
 
@@ -70,16 +56,9 @@ class ProductType extends AbstractType
             ])
             ->add('imgRoute', FileType::class, [
                 'label' => 'Glasses image',
-
-                // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
                 'label' => 'Upload image', 'attr' => array('class' => 'form-control'),
-                // make it optional so you don't have to re-upload the PDF file
-                // everytime you edit the Product details
                 'required' => true,
-
-                // unmapped fields can't define their validation using annotations
-                // in the associated entity, so you can use the PHP constraint classes
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',

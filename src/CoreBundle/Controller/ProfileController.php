@@ -25,7 +25,7 @@ class ProfileController extends Controller
         $repository_user = $this->getDoctrine()->getRepository(User::class);
         $user_info = $repository_user->findById($user->getId());
 
-        dump($user);
+
 
 
 
@@ -37,13 +37,13 @@ class ProfileController extends Controller
 
 
             if ($is_match == true) {
-                dump("true");
+
                 $this->getDoctrine()->getManager()->flush();
 
                 return $this->redirectToRoute('profile');
             }
             if ($is_match == false) {
-                dump("false");
+
                 $error_pass = "Wrong password";
                 return $this->render('@Core/Default/Profile/profile.html.twig', array(
                     'role' => $role, 'user_name' => $user_name, 'user_info' => $user_info, 'error_pass' => $error_pass,

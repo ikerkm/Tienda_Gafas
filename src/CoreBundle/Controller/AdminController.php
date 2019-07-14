@@ -51,7 +51,7 @@ class AdminController extends Controller
 
 
             $imageFile = $form['imgRoute']->getData();
-            dump($form['productName']->getData());
+
 
             if ($imageFile) {
 
